@@ -1,0 +1,8 @@
+studentID,studentUName,fatherName,motherName,contactNo,fee,currency,city,country,abc_classId
+101,Darshan,Krishna,Lakshmi,9876543210,15000,INR,Bangalore,India,101
+102,Rahul,Suresh,Geetha,9876543211,16000,INR,Chennai,India,103
+103,Priya,Ramesh,Anitha,9876543212,15500,INR,Hyderabad,India,105
+104,Kiran,Mohan,Radha,9876543213,17000,INR,Mumbai,India,106
+105,Anjali,Prakash,Uma,9876543214,16500,INR,Pune,India,108
+106,Vijay,Kumar,Meena,9876543215,15000,INR,Delhi,India,101
+107,Sneha,Rajesh,Deepa,9876543216,17500,INR,Kolkata,India,103

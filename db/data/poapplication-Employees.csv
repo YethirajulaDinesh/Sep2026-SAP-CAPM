@@ -1,0 +1,6 @@
+employeeId,employeeName,salary,department,currencyCode,city,country,division_divisionId
+101,John Doe,85000.00,IT,EUR,Frankfurt,Germany,10
+102,Jane Smith,95000.00,Finance,USD,New York,USA,20
+103,Rahul Kumar,650000.00,Operations,INR,Bengaluru,India,40
+104,Alice Brown,75000.00,HR,GBP,London,UK,30
+105,Takashi Sato,11000000.00,Sales,JPY,Tokyo,Japan,50

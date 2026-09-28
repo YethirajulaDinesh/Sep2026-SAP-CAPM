@@ -1,0 +1,8 @@
+bookId,bookName,author,date_of_issue,studentName,returnDate,parent_studentID
+1,Java Basics,James Gosling,2026-01-05,Darshan,2026-01-20,101
+2,Python Programming,Guido van Rossum,2026-01-10,Rahul,2026-01-25,102
+3,Database Systems,Raghu Ramakrishnan,2026-02-01,Priya,2026-02-15,103
+4,Data Structures,Mark Allen Weiss,2026-02-05,Kiran,2026-02-20,104
+5,Operating Systems,Abraham Silberschatz,2026-02-12,Anjali,2026-02-28,105
+6,Computer Networks,Andrew Tanenbaum,2026-03-01,Vijay,2026-03-15,106
+7,Software Engineering,Ian Sommerville,2026-03-10,Sneha,2026-03-25,107

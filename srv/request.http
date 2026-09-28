@@ -1,0 +1,228 @@
+GET http://localhost:4004/odata/v4/catalog/ProductSrv
+ 
+###
+
+GET http://localhost:4004/odata/v4/catalog/getHighestSalariedEmployees()
+
+
+
+###
+put http://localhost:4004/odata/v4/catalog/EmployeeSrv/8d4c5a6b-1234-5678-9abc-def123456789
+Content-Type: application/json
+ 
+{
+    "phoneNumber": "9876543210",
+    "Currency_code": "IND"
+}
+ 
+ 
+###
+put http://localhost:4004/odata/v4/catalog/EmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C19787FB
+Content-Type: application/json
+ 
+{
+   "salaryAmount" : 16000,
+   "Currency_code" : "USD"
+ 
+}
+ 
+###
+put http://localhost:4004/odata/v4/catalog/EmployeeSrv/2200000030875
+Content-Type: application/json
+
+{
+   "phoneNumber": "9876543210",
+   "Currency_code": "IND"
+}
+
+
+###
+
+PUT http://localhost:38217/odata/v4/catalog/ProductSrv/2a5776ec-e711-4c11-a92a-2da5b46c11b8
+Content-Type: application/json
+ 
+{
+  "PRICE": "9334564.00"
+}
+
+
+
+### Create Employee
+POST http://localhost:38217/odata/v4/catalog/createEmployee
+Content-Type: application/json
+ 
+{
+    "Currency_code": "USD",
+    "ID": "2a5776ec-e711-4c11-a92a-2da5b46c40a2", 
+    "accountNumber": null,
+    "bankId": null,
+    "bankName": null,
+    "email": null,
+    "gender": "M",
+    "language": "E",
+    "loginName": "RAMAM",
+    "nameFirst": "Rama",
+    "nameInitials": null,
+    "nameLast": "Murthy",
+    "nameMiddle": null,
+    "phoneNumber": "(+1) 9898989898",
+    "salaryAmount": "45000.00"
+}
+
+###
+POST http://localhost:4004/odata/v4/catalog/updateEmployee
+Content-Type: application/json
+ 
+{
+  "ID": "2a5776ec-e711-4c11-a92a-2da5b46c40a4",
+  "salaryAmount": "50000.00",
+  "Currency_code": "USD"
+}
+
+###
+POST http://localhost:4004/odata/v4/catalog/createProduct
+Content-Type: application/json
+
+{
+    
+"NODE_KEY": "2a5776ec-e711-4c11-a92a-2da5b46c40a2",
+  "PRODUCT_ID": "P1001",
+  "TYPE_CODE": "EL",
+  "CATEGORY": "Electronics",
+  "DESCRIPTION": "Laptop",
+  "TAX_TARIF_CODE": 18,
+  "MEASURE_UNIT": "EA",
+  "WEIGHT_MEASURE": 2.50,
+  "WEIGHT_UNIT": "KG",
+  "PRICE": 55000.00,
+  "CURRENCY_CODE": "USD",
+  "WIDTH": 35.50,
+  "DEPTH": 25.00,
+  "HEIGHT": 2.50,
+  "DIM_UNIT": "CM"
+ 
+}
+
+
+
+###
+POST http://localhost:4004/odata/v4/catalog/deleteEmployee
+Content-Type: application/json
+
+{
+    "ID": "2a5776ec-e711-4c11-a92a-2da5b46c40a2"
+}
+
+###
+
+http://localhost:44713/odata/v4/catalog/ProductSrv
+
+
+###
+
+http://localhost:44713/odata/v4/catalog/ProductSrv/$count
+
+###
+http://localhost:44713/odata/v4/catalog/ProductSrv?$top=10
+
+
+###
+http://localhost:44713/odata/v4/catalog/ProductSrv?$top=10&$skip=10
+
+###
+http://localhost:44713/odata/v4/catalog/ProductSrv?$filter=CATEGORY eq 'Notebooks'&DIM_UNIT eq 'CM'
+
+
+###
+http://localhost:44713/odata/v4/catalog/ProductSrv?$select=PRODUCT_ID,DESCRIPTION,CATEGORY,PRICE
+
+###
+http://localhost:44713/odata/v4/catalog/ProductSrv?$orderby=PRODUCT_ID desc
+
+###
+http://localhost:44713/odata/v4/catalog/ProductSrv('74867AD200E41EDBA5D8B06B26F8C052')/PRODUCT_ID
+
+###
+http://localhost:44713/odata/v4/catalog/ProductSrv('74867AD200E41EDBA5D8B06B26F8C052')/PRODUCT_ID/$value
+
+###
+http://localhost:45039/odata/v4/catalog/PurchaseOrderSrv?$expand=Items
+
+
+###
+//1
+https://services.odata.org/V4/Northwind/Northwind.svc/Categories
+
+
+
+###
+
+//2
+https://services.odata.org/V4/Northwind/Northwind.svc/Customers?$filter=City%20eq%20%27London%27&$select=CustomerID,ContactName,CompanyName
+
+--------------------------------------------------------------
+//1
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Products
+
+//2
+###
+
+https://services.odata.org/V4/Northwind/Northwind.svc/Categories?$filter=startswith(CategoryName,%27Co%27)&$select=CategoryName,Description
+
+//3
+
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Suppliers?$filter=contains(Address,%27rue%27)&$select=CompanyName,City,Country,PostalCode&$orderby=CompanyName
+
+
+//4
+
+###
+
+https://services.odata.org/V4/Northwind/Northwind.svc/Order_Details?$select=ProductID,Quantity&$orderby=ProductID
+
+//5
+###
+https://services.odata.org/V4/Northwind/Northwind.svc/Customers?$select=ContactName,Address&$expand=Orders($filter=ShipVia%20eq%201)
+
+//6
+###
+
+https://services.odata.org/V4/Northwind/Northwind.svc/Suppliers?$select=CompanyName,ContactName,ContactTitle,Region
+
+###
+
+GET http://localhost:38217/odata/v4/catalog/EmployeeSrv
+Content-Type: application/json
+ 
+{
+    "Currency_code": "USD",
+    "ID": "2a5776ec-e711-4c11-a92a-2da5b46c40a2", 
+    "accountNumber": null,
+    "bankId": null,
+    "bankName": null,
+    "email": null,
+    "gender": "M",
+    "language": "E",
+    "loginName": "RAMAM",
+    "nameFirst": "Rama",
+    "nameInitials": null,
+    "nameLast": "Murthy",
+    "nameMiddle": null,
+    "phoneNumber": "(+1) 9898989898",
+    "salaryAmount": "45000.00"
+}
+
+
+###
+###
+GET http://localhost:41381/odata/v4/catalog/EmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C19807FB/top20Employees
+ 
+###
+POST http://localhost:41381/odata/v4/catalog/EmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C19807FB/IncreaseSal
+
+###
+
+GET http://localhost:4004/odata/v4/catalog/getUtilities()
+

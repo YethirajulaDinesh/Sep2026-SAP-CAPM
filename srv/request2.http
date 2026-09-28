@@ -1,0 +1,235 @@
+# @server = http://localhost:4004/odata/v4/catalog/
+
+# #################################################
+# # ALBUMS
+# #################################################
+
+# ### Get All Albums
+# GET http://localhost:4004/odata/v4/catalog/Albums
+
+# ### Get Album By ID
+# GET http://localhost:4004/odata/v4/catalog/Albums(1)
+
+# ### Create Album
+# POST http://localhost:4004/odata/v4/catalog/Albums
+# Content-Type: application/json
+
+# {
+#     "ID": 3,
+#     "title": "Album",
+#     "description": "Beautiful  photos",
+#     "viewCount": 101
+# }
+
+# ### Update Album
+# PATCH http://localhost:4004/odata/v4/catalog/Albums(1)
+# Content-Type: application/json
+
+# {
+#     "title": "Updated Nature Album",
+#     "viewCount": 150
+# }
+
+# ### Delete Album
+# DELETE http://localhost:4004/odata/v4/catalog/Albums(1)
+
+# #################################################
+# # LOCATIONS
+# #################################################
+
+# ### Get All Locations
+# GET http://localhost:4004/odata/v4/catalog/Locations
+
+# ### Create Location
+# POST http://localhost:4004/odata/v4/catalog/Locations
+# Content-Type: application/json
+
+# {
+#     "ID": 1,
+#     "name": "Bangalore",
+#     "shortName": "BLR"
+# }
+
+# ### Update Location
+# PATCH http://localhost:4004/odata/v4/catalog/Locations(1)
+# Content-Type: application/json
+
+# {
+#     "name": "Hyderabad"
+# }
+
+# ### Delete Location
+# DELETE http://localhost:4004/odata/v4/catalog/Locations(1)
+
+# #################################################
+# # MEMBERS
+# #################################################
+
+# ### Get All Members
+# GET http://localhost:4004/odata/v4/catalog/Members
+
+# ### Create Member
+# POST http://localhost:4004/odata/v4/catalog/Members
+# Content-Type: application/json
+
+# {
+#     "ID": 1,
+#     "name": "Dinesh",
+#     "phoneNum": "9182563098",
+#     "email": "dinesh@example.com",
+#     "address": "Bangalore"
+# }
+
+# ### Update Member
+# PATCH http://localhost:4004/odata/v4/catalog/Members(1)
+# Content-Type: application/json
+
+# {
+#     "address": "Hyderabad"
+# }
+
+# ### Delete Member
+# DELETE http://localhost:4004/odata/v4/catalog/Members(1)
+
+# #################################################
+# # PHOTOS
+# #################################################
+
+# ### Get All Photos
+# GET http://localhost:4004/odata/v4/catalog/Photos
+
+# ### Create Photo
+# POST http://localhost:4004/odata/v4/catalog/Photos
+# Content-Type: application/json
+
+# {
+#     "ID": 1,
+#     "title": "Sunset",
+#     "description": "Evening Sunset",
+#     "privacy": "Public",
+#     "uploadDate": "2026-09-22",
+#     "viewCount": 500,
+#     "imagePath": "/images/sunset.jpg",
+#     "album_ID": 1,
+#     "location_ID": 1,
+#     "member_ID": 1
+# }
+
+# ### Update Photo
+# PATCH http://localhost:4004/odata/v4/catalog/Photos(1)
+# Content-Type: application/json
+
+# {
+#     "viewCount": 700
+# }
+
+# ### Delete Photo
+# DELETE http://localhost:4004/odata/v4/catalog/Photos(1)
+
+# #################################################
+# # COMMENTS
+# #################################################
+
+# ### Get All Comments
+# GET http://localhost:4004/odata/v4/catalog/Comments
+
+# ### Create Comment
+# POST http://localhost:4004/odata/v4/catalog/Comments
+# Content-Type: application/json
+
+# {
+#     "ID": 1,
+#     "postDate": "2026-09-22",
+#     "content": "Excellent Picture",
+#     "photo_ID": 1
+# }
+
+# ### Update Comment
+# PATCH http://localhost:4004/odata/v4/catalog/Comments(1)
+# Content-Type: application/json
+
+# {
+#     "content": "Amazing Photo"
+# }
+
+# ### Delete Comment
+# DELETE http://localhost:4004/odata/v4/catalog/Comments(1)
+
+# #################################################
+# # TAGS
+# #################################################
+
+# ### Get All Tags
+# GET http://localhost:4004/odata/v4/catalog/Tags
+
+# ### Create Tag
+# POST http://localhost:4004/odata/v4/catalog/Tags
+# Content-Type: application/json
+
+# {
+#     "ID": 1,
+#     "title": "Nature"
+# }
+
+# ### Update Tag
+# PATCH http://localhost:4004/odata/v4/catalog/Tags(1)
+# Content-Type: application/json
+
+# {
+#     "title": "Landscape"
+# }
+
+# ### Delete Tag
+# DELETE http://localhost:4004/odata/v4/catalog/Tags(1)
+
+# #################################################
+# # TAGPHOTOS
+# #################################################
+
+# ### Get All TagPhotos
+# GET http://localhost:4004/odata/v4/catalog/TagPhotos
+
+# ### Create TagPhoto
+# POST http://localhost:4004/odata/v4/catalog/TagPhotos
+# Content-Type: application/json
+
+# {
+#     "ID": 1,
+#     "tag_ID": 1,
+#     "photo_ID": 1
+# }
+
+# ### Update TagPhoto
+# PATCH http://localhost:4004/odata/v4/catalog/TagPhotos(1)
+# Content-Type: application/json
+
+# {
+#     "tag_ID": 1,
+#     "photo_ID": 1
+# }
+
+
+# ### Remove Tag From Photo
+# POST http://localhost:4004/odata/v4/catalog/removeTagFromPhoto
+# Content-Type: application/json
+
+# {
+#     "tagID": 1,
+#     "photoID": 1
+# }
+
+
+
+# ### Update Photo Views
+# POST http://localhost:4004/odata/v4/catalog/updatePhotoViews
+# Content-Type: application/json
+
+# {
+#     "ID": 1,
+#     "viewCount": 500
+# }
+
+
+###
+
+# http://localhost:4004/odata/v4/catalog/ProductSrv
