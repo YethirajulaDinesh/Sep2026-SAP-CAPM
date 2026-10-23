@@ -6,47 +6,47 @@ using { poapplication.common2 as common } from './common2.cds';
 context master {
  
     entity BusinessPartners {
-        key NODE_KEY   : common.Guid;
-            BP_ROLE    : common.Role;
-            EMAIL      : common.Email;
-            MOBILE     : common.PhoneNumber;
-            FAX        : common.String32;
-            WEB        : common.String255;
-            BP_ID      : common.Guid;
-            COMPANY_NAME : common.String255;
+        key NODE_KEY   : common.Guid @(title : '{i18n>NODE_KEY}');
+            BP_ROLE    : common.Role @(title : '{i18n>BP_ROLE}');
+            EMAIL      : common.Email @(title : '{i18n>EMAIL}');
+            MOBILE     : common.PhoneNumber @(title : '{i18n>MOBILE}');
+            FAX        : common.String32 @(title : '{i18n>FAX}');
+            WEB        : common.String255 @(title : '{i18n>WEB}');
+            BP_ID      : common.Guid @(title : '{i18n>BP_ID}');
+            COMPANY_NAME : common.String255 @(title : '{i18n>COMPANY_NAME}');
  
             // Managed Association
             AD : Association to Addresses;
     }
  
     entity Addresses : common.Address {
-        key NODE_KEY   : common.Guid;
-            ADDRESS_TYPE : common.String32;
-            VAL_START    : Date;
-            VAL_END      : Date;
-            LATITUDE     : Decimal;
-            LONGITUDE    : Decimal;
+        key NODE_KEY   : common.Guid @(title : '{i18n>NODE_KEY}');
+            ADDRESS_TYPE : common.String32 @(title : '{i18n>ADDRESS_TYPE}');
+            VAL_START    : Date @(title : '{i18n>VAL_START}');
+            VAL_END      : Date @(title : '{i18n>VAL_END}');
+            LATITUDE     : Decimal @(title : '{i18n>LATITUDE}');
+            LONGITUDE    : Decimal @(title : '{i18n>LONGITUDE}');
  
             // Unmanaged Association
             BP : Association to one BusinessPartners on BP.AD = $self;
     }
  
     entity Products {
-        key NODE_KEY     : common.Guid;
-            PRODUCT_ID   : common.String32;
-            TYPE_CODE    : String(2);
-            CATEGORY     : common.String32;
-            DESCRIPTION  : common.String255;
-            TAX_TARIF_CODE : Integer;
-            MEASURE_UNIT : String(2);
-            WEIGHT_MEASURE : Decimal(5,2);
-            WEIGHT_UNIT  : String(2);
-            PRICE        : Decimal(15,2);
-            CURRENCY_CODE : String(5);
-            WIDTH        : Decimal(5,2);
-            DEPTH        : Decimal(5,2);
-            HEIGHT       : Decimal(5,2);
-            DIM_UNIT     : String(2);
+        key NODE_KEY     : common.Guid @(title : '{i18n>NODE_KEY}');
+            PRODUCT_ID   : common.String32 @(title : '{i18n>PRODUCT_ID}');
+            TYPE_CODE    : String(2) @(title : '{i18n>TYPE_CODE}');
+            CATEGORY     : common.String32 @(title : '{i18n>CATEGORY}');
+            DESCRIPTION  : common.String255 @(title : '{i18n>DESCRIPTION}');
+            TAX_TARIF_CODE : Integer @(title : '{i18n>TAX_TARIF_CODE}');
+            MEASURE_UNIT : String(2) @(title : '{i18n>MEASURE_UNIT}');
+            WEIGHT_MEASURE : Decimal(5,2) @(title : '{i18n>WEIGHT_MEASURE}');
+            WEIGHT_UNIT  : String(2) @(title : '{i18n>WEIGHT_UNIT}');
+            PRICE        : Decimal(15,2) @(title : '{i18n>PRICE}');
+            CURRENCY_CODE : String(5) @(title : '{i18n>CURRENCY_CODE}');
+            WIDTH        : Decimal(5,2) @(title : '{i18n>WIDTH}');
+            DEPTH        : Decimal(5,2) @(title : '{i18n>DEPTH}');
+            HEIGHT       : Decimal(5,2) @(title : '{i18n>HEIGHT}');
+            DIM_UNIT     : String(2) @(title : '{i18n>DIM_UNIT}');
  
             // Managed Association
             SUPPLIERS : Association to BusinessPartners;
@@ -74,14 +74,14 @@ entity Employees : cuid {
 context transaction {
  
     entity PurchaseOrders : common.Amount {
-        key NODE_KEY : common.Guid;
-            PO_ID    : common.Guid;
+        key NODE_KEY : common.Guid @(title : '{i18n>NODE_KEY}') ;
+            PO_ID    : common.Guid @(title : '{i18n>PO_ID}');
  
             // Managed Association
-            PARTNER  : Association to master.BusinessPartners;
+            PARTNER  : Association to master.BusinessPartners @(title : '{i18n>PARTNER_GUID}');
  
-            LIFECYCLE_STATUS : String(1);
-            OVERALL_STATUS   : String(1);
+            LIFECYCLE_STATUS : String(1) @(title : '{i18n>LIFECYCLE_STATUS}');
+            OVERALL_STATUS   : String(1) @(title : '{i18n>OVERALL_STATUS}');
  
             // Unmanaged Association
             Items : Association to many PurchaseItems
@@ -89,15 +89,27 @@ context transaction {
     }
  
     entity PurchaseItems : common.Amount {
-        key NODE_KEY : common.Guid;
+        key NODE_KEY : common.Guid @(title : '{i18n>NODE_KEY}');
  
             // Parent Key
-            PARENT : Association to PurchaseOrders;
+            PARENT : Association to PurchaseOrders @(title : '{i18n>PARENT_KEY}');
  
-            PO_ITEM_POS : Integer;
+            PO_ITEM_POS : Integer @(title : '{i18n>PO_ITEM_POS}');
  
             // Managed Association
-            PRODUCT : Association to master.Products;
+            PRODUCT : Association to master.Products @(title : '{i18n>PRODUCT_GUID}');
     }
  
 }
+
+entity Countries {
+    key code : String(2);
+    description : String(200);
+}
+
+entity BPRoleFltr {
+    code : Integer @(title: '{i18n>BP_ROLE}');
+    description : String(80) @(title: '{i18n>BP_ROLE}');
+}
+
+
