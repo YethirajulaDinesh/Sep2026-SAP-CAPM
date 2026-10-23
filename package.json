@@ -1,15 +1,55 @@
 {
   "name": "poapplication",
   "version": "1.0.0",
-  "description": "Welcome to your new CAP project.",
+  "description": "CAP Payroll Application",
+  "private": true,
   "license": "ISC",
-  "author": "",
   "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "dependencies": {
-    "@cap-js/hana": "^3"
+    "@cap-js/hana": "^3",
+    "@sap/cds": "^10",
+    "@sap/xssec": "^4.1"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^10.1.0",
+    "@ui5/cli": "^4.0.71",
+    "cds-plugin-ui5": "^0.17.0",
+    "mbt": "^1.2.49",
+    "rimraf": "^5.0.5",
+    "ui5-task-zipper": "^3.7.0"
+  },
+  "scripts": {
+    "start": "cds run",
+    "watch": "cds watch",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy poapplication --delete-services --delete-service-keys --delete-service-brokers",
+    "watch-project2": "cds watch --open project2/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-project3": "cds watch --open project3/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "cds": {
+    "server": {
+      "index": true
+    },
+    "requires": {
+      "db": {
+        "kind": "hana"
+      },
+      "[production]": {
+        "auth": "xsuaa"
+      }
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/project1",
+    "app/project2",
+    "app/project3"
+  ],
+  "allowScripts": {
+    "mbt@1.2.49": true
   }
 }

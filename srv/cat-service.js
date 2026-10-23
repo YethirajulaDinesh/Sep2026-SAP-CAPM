@@ -209,6 +209,165 @@ module.exports = cds.service.impl(async function () {
             packageInfo: vpackageContent
         };
     });
+    
+    this.on('createPurchaseOrder', async (req) => {
+ 
+        const data = req.data;
+ 
+        await INSERT.into('poapplication.db.transaction.PurchaseOrders')
+            .entries({
+                NODE_KEY: cds.utils.uuid(),
+                PO_ID: data.PO_ID,
+                GROSS_AMOUNT: data.GROSS_AMOUNT,
+                NET_AMOUNT: data.NET_AMOUNT,
+                TAX_AMOUNT: data.TAX_AMOUNT,
+                CURRENCY_code: data.CURRENCY_code
+            });
+ 
+        return 'Purchase Order Created';
+    });
+ 
+    this.on('updatePurchaseOrder', async (req) => {
+ 
+        const data = req.data;
+ 
+        await UPDATE('poapplication.db.transaction.PurchaseOrders')
+            .set({
+                GROSS_AMOUNT: data.GROSS_AMOUNT
+            })
+            .where({
+                NODE_KEY: data.NODE_KEY
+            });
+ 
+        return 'Purchase Order Updated';
+    });
+ 
+    this.on('deletePurchaseOrder', async (req) => {
+ 
+        const data = req.data;
+ 
+        await DELETE.from('poapplication.db.transaction.PurchaseOrders')
+            .where({
+                NODE_KEY: data.NODE_KEY
+            });
+ 
+        return 'Purchase Order Deleted';
+    });
+
+    this.on('createPurchaseItem', async (req) => {
+
+    const data = req.data;
+
+    await INSERT.into('poapplication.db.transaction.PurchaseItems')
+        .entries({
+            NODE_KEY: cds.utils.uuid(),
+            ITEM_ID: data.ITEM_ID,
+            PO_ID: data.PO_ID,
+            GROSS_AMOUNT: data.GROSS_AMOUNT,
+            NET_AMOUNT: data.NET_AMOUNT,
+            TAX_AMOUNT: data.TAX_AMOUNT,
+            CURRENCY_code: data.CURRENCY_code
+        });
+
+    return 'Purchase Item Created';
+});
+
+this.on('updatePurchaseItem', async (req) => {
+
+    const data = req.data;
+
+    await UPDATE('poapplication.db.transaction.PurchaseItems')
+        .set({
+            GROSS_AMOUNT: data.GROSS_AMOUNT,
+            NET_AMOUNT: data.NET_AMOUNT,
+            TAX_AMOUNT: data.TAX_AMOUNT
+        })
+        .where({
+            NODE_KEY: data.NODE_KEY
+        });
+
+    return 'Purchase Item Updated';
+});
+
+this.on('deletePurchaseItem', async (req) => {
+
+    const data = req.data;
+
+    await DELETE.from('poapplication.db.transaction.PurchaseItems')
+        .where({
+            NODE_KEY: data.NODE_KEY
+        });
+
+    return 'Purchase Item Deleted';
+});
 
 
-})
+    // CREATE PRODUCT
+    this.on('createproduct', async (req) => {
+
+        const {
+            PRODUCT_ID,
+            TYPE_CODE,
+            CATEGORY,
+            DESCRIPTION,
+            PRICE
+        } = req.data;
+
+        await INSERT.into(ProductSrv).entries({
+            PRODUCT_ID,
+            TYPE_CODE,
+            CATEGORY,
+            DESCRIPTION,
+            PRICE
+        });
+
+        return await SELECT.from(ProductSrv)
+            .where({ PRODUCT_ID });
+    });
+
+    // UPDATE PRODUCT
+    this.on('updateproduct', async (req) => {
+
+        const {
+            PRODUCT_ID,
+            PRICE,
+            DESCRIPTION
+        } = req.data;
+
+        const result = await UPDATE(ProductSrv)
+            .set({
+                PRICE,
+                DESCRIPTION
+            })
+            .where({ PRODUCT_ID });
+
+        if (result > 0) {
+            return "Product Updated Successfully";
+        }
+
+        return "Product Not Found";
+    });
+
+    // DELETE PRODUCT
+    this.on('deleteproduct', async (req) => {
+
+        const { PRODUCT_ID } = req.data;
+
+        const result = await DELETE.from(ProductSrv)
+            .where({ PRODUCT_ID });
+
+        if (result > 0) {
+            return "Product Deleted Successfully";
+        }
+
+        return "Product Not Found";
+    });
+
+});
+ 
+ 
+ 
+ 
+
+
+

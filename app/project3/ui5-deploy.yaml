@@ -1,0 +1,24 @@
+
+specVersion: "2.6"
+metadata:
+  name: project3
+
+type: application
+
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: ui5-task-zipper
+      afterTask: generateCachebusterInfo
+      configuration:
+        archiveName: project3
+        relativePaths: true
+        additionalFiles:
+          - xs-app.json
+
+resources:
+  configuration:
+    propertiesFileSourceEncoding: UTF-8  
